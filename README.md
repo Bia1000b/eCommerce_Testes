@@ -45,9 +45,11 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 * Partições: Peso > 5,00 kg: Soma taxa mínima de R$ 12,00 ; Peso ≤ 5,00 kg: Não soma taxa mínima.
 * Valores Limites: 5.00, 5.01
 
-2) Tabela de Decisão: 
+2) Tabela de Decisão:
+   ![tabelaDecisao](./assets/tabelaDeDecisao.png)
 
-3) Documentação dos casos de teste relacionando ID do teste, entrada, resultado esperado e critério coberto (partição, limite ou regra de decisão):
+
+4) Documentação dos casos de teste relacionando ID do teste, entrada, resultado esperado e critério coberto (partição, limite ou regra de decisão):
 
 ## 4. Documentação e Projeto dos Casos de Teste de Caixa Branca
 
