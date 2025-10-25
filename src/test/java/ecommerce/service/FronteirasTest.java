@@ -26,7 +26,7 @@ class FronteirasTest {
         clienteBronzeSudeste = new Cliente(1L, "Cliente Padrão", Regiao.SUDESTE, TipoCliente.BRONZE);
     }
 
-    @DisplayName("Deve aplicar descontos corretamente nos limites de subtotal do carrinho")
+    @DisplayName("VL-01 a VL-04: Deve aplicar descontos corretamente nos limites de subtotal do carrinho")
     @ParameterizedTest(name = "Subtotal: {0} -> Esperado: {1}")
     @CsvSource({
             "499.99,  499.99, 'Subtotal abaixo do limite não deve ter desconto'",
@@ -47,7 +47,7 @@ class FronteirasTest {
         assertThat(custoTotal).as(description).isEqualByComparingTo(expectedTotal);
     }
 
-    @DisplayName("Deve tratar frete corretamente em todos os limites de peso")
+    @DisplayName("VL-05 a VL-10: Deve tratar frete corretamente em todos os limites de peso")
     @ParameterizedTest(name = "Peso: {0} kg -> Esperado: {1}")
     @CsvSource({
             "5.00, 100.00,  'Peso no limite exato da isenção não deve ter frete'",
@@ -70,7 +70,7 @@ class FronteirasTest {
         assertThat(custoTotal).as(description).isEqualByComparingTo(expectedTotal);
     }
 
-    @DisplayName("Deve aplicar descontos corretamente em todos os limites de quantidade de itens")
+    @DisplayName("VL-11 a VL-16: Deve aplicar descontos corretamente em todos os limites de quantidade de itens")
     @ParameterizedTest(name = "Quantidade: {0} -> Esperado: {1}")
     @CsvSource({
             "2, 100.00, '2 itens não devem receber desconto'",
