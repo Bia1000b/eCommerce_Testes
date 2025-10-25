@@ -48,8 +48,17 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 2) Tabela de Decisão:
    ![tabelaDecisao](./assets/tabelaDeDecisao.png)
 
+3) Documentação dos testes de partição:
+   ![tabelaParticao](./assets/particoes.png)
 
-4) Documentação dos casos de teste relacionando ID do teste, entrada, resultado esperado e critério coberto (partição, limite ou regra de decisão):
+4) Documentação dos testes de fronteira:
+   ![tabelaFronteiras](./assets/fronteiras.png)
+
+5) Documentação dos testes baseado na Tabela de decisões:
+   ![tabelaRegras](./assets/regras.png)
+
+6) Documentação dos testes de robustez:
+   ![tabelaRobustez](./assets/robustez.png)
 
 ## 4. Documentação e Projeto dos Casos de Teste de Caixa Branca
 
