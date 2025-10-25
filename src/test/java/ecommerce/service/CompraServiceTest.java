@@ -149,7 +149,7 @@ public class CompraServiceTest {
 				.isThrownBy(() -> {
 					service.calcularCustoTotal(null, Regiao.SUDESTE, TipoCliente.BRONZE);
 				})
-				.withMessage("Carrinho ou lista de itens não pode ser nulo.");
+				.withMessage("Carrinho vazio ou não encontrado.");
 	}
 
 	@Test
@@ -159,7 +159,7 @@ public class CompraServiceTest {
 				.isThrownBy(() -> {
 					service.calcularCustoTotal(carrinho, null, TipoCliente.BRONZE);
 				})
-				.withMessage("Região e Tipo de Cliente não podem ser nulos.");
+				.withMessage("Região ou cliente não identificados.");
 	}
 
 	@Test
@@ -185,6 +185,6 @@ public class CompraServiceTest {
 				.isThrownBy(() -> {
 					service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
 				})
-				.withMessage("Preço do produto não pode ser nulo ou negativo.");
+				.withMessage("Preço do produto deve ser maior que zero.");
 	}
 }
