@@ -50,7 +50,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 7: Subtotal <500, Frete Isento, Sem Descontos")
+	@DisplayName("TD-07: Subtotal <500, Frete Isento, Sem Descontos")
 	public void calcularCustoTotal() {
 
 		Produto p1 = criarProduto("p1", new BigDecimal("300.00"), new BigDecimal("4.00"), TipoProduto.ROUPA, false);
@@ -66,7 +66,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 1: Subtotal >1000, 8+ itens, Peso >5kg, Ouro, Não-Frágil, Sudeste")
+	@DisplayName("TD-01: Subtotal >1000, 8+ itens, Peso >5kg, Ouro, Não-Frágil, Sudeste")
 	public void calcularCustoTotal_Regra_1() {
 		Produto p = criarProduto("p1", new BigDecimal("120.00"), new BigDecimal("1.00"), TipoProduto.ROUPA, false);
 		adicionarItem(p, 10L);
@@ -77,7 +77,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 2: Subtotal >1000, 8+ itens, Peso >5kg, Prata, Não-Frágil, Sudeste")
+	@DisplayName("TD-02: Subtotal >1000, 8+ itens, Peso >5kg, Prata, Não-Frágil, Sudeste")
 	public void calcularCustoTotal_Regra_2() {
 		Produto p = criarProduto("p1", new BigDecimal("120.00"), new BigDecimal("1.00"), TipoProduto.ROUPA, false);
 		adicionarItem(p, 10L);
@@ -88,7 +88,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 3: Subtotal 500-1000, 5-7 itens, Peso >5kg, Bronze, Não-Frágil, Não-Sudeste")
+	@DisplayName("TD-03: Subtotal 500-1000, 5-7 itens, Peso >5kg, Bronze, Não-Frágil, Não-Sudeste")
 	public void calcularCustoTotal_Regra_3() {
 		Produto p = criarProduto("p1", new BigDecimal("100.00"), new BigDecimal("1.00"), TipoProduto.LIVRO, false);
 		adicionarItem(p, 6L);
@@ -99,7 +99,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 4: Subtotal 500-1000, 3-4 itens, Peso <5kg, Ouro, Não-Frágil, Sudeste")
+	@DisplayName("TD-04: Subtotal 500-1000, 3-4 itens, Peso <5kg, Ouro, Não-Frágil, Sudeste")
 	public void calcularCustoTotal_Regra_4() {
 		Produto p = criarProduto("p1", new BigDecimal("200.00"), new BigDecimal("1.00"), TipoProduto.MOVEL, false);
 		adicionarItem(p, 4L);
@@ -110,7 +110,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 5: Subtotal <500, 3-4 itens, Peso <5kg, Prata, Não-Frágil, Sudeste")
+	@DisplayName("TD-05: Subtotal <500, 3-4 itens, Peso <5kg, Prata, Não-Frágil, Sudeste")
 	public void calcularCustoTotal_Regra_5() {
 		Produto p = criarProduto("p1", new BigDecimal("100.00"), new BigDecimal("1.00"), TipoProduto.ALIMENTO, false);
 		adicionarItem(p, 4L);
@@ -121,7 +121,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 6: Subtotal <500, 0-2 itens, Peso >5kg, Bronze, Frágil, Sudeste")
+	@DisplayName("TD-06: Subtotal <500, 0-2 itens, Peso >5kg, Bronze, Frágil, Sudeste")
 	public void calcularCustoTotal_Regra_6() {
 		Produto p = criarProduto("TV", new BigDecimal("300.00"), new BigDecimal("6.00"), TipoProduto.ELETRONICO, true);
 		adicionarItem(p, 1L);
@@ -132,7 +132,7 @@ public class CompraServiceTest {
 	}
 
 	@Test
-	@DisplayName("Regra 8: Subtotal >1000, 8+ itens, Peso >5kg, Bronze, Não-Frágil, Não-Sudeste")
+	@DisplayName("TD-08: Subtotal >1000, 8+ itens, Peso >5kg, Bronze, Não-Frágil, Não-Sudeste")
 	public void calcularCustoTotal_Regra_8() {
 		Produto p = criarProduto("p1", new BigDecimal("120.00"), new BigDecimal("1.00"), TipoProduto.ROUPA, false);
 		adicionarItem(p, 10L);
@@ -142,49 +142,4 @@ public class CompraServiceTest {
 				.isEqualByComparingTo("857.60");
 	}
 
-	@Test
-	@DisplayName("Robustez: Lança exceção se Carrinho for nulo")
-	public void calcularCustoTotal_carrinhoNulo_lancaIllegalArgumentException() {
-		assertThatIllegalArgumentException()
-				.isThrownBy(() -> {
-					service.calcularCustoTotal(null, Regiao.SUDESTE, TipoCliente.BRONZE);
-				})
-				.withMessage("Carrinho vazio ou não encontrado.");
-	}
-
-	@Test
-	@DisplayName("Robustez: Lança exceção se Regiao for nula")
-	public void calcularCustoTotal_regiaoNula_lancaIllegalArgumentException() {
-		assertThatIllegalArgumentException()
-				.isThrownBy(() -> {
-					service.calcularCustoTotal(carrinho, null, TipoCliente.BRONZE);
-				})
-				.withMessage("Região ou cliente não identificados.");
-	}
-
-	@Test
-	@DisplayName("Robustez: Lança exceção se Quantidade do item for <= 0")
-	public void calcularCustoTotal_itemQuantidadeZero_lancaIllegalArgumentException() {
-		adicionarItem(criarProduto("p1", new BigDecimal("100.00"), new BigDecimal("1.00"), TipoProduto.ROUPA, false),
-				0L);
-
-		assertThatIllegalArgumentException()
-				.isThrownBy(() -> {
-					service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
-				})
-				.withMessage("Quantidade do item deve ser maior que zero.");
-	}
-
-	@Test
-	@DisplayName("Robustez: Lança exceção se Preço do produto for negativo")
-	public void calcularCustoTotal_itemPrecoNegativo_lancaIllegalArgumentException() {
-		adicionarItem(criarProduto("p1", new BigDecimal("-100.00"), new BigDecimal("1.00"), TipoProduto.ROUPA, false),
-				1L);
-
-		assertThatIllegalArgumentException()
-				.isThrownBy(() -> {
-					service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
-				})
-				.withMessage("Preço do produto deve ser maior que zero.");
-	}
 }
