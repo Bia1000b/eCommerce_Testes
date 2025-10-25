@@ -222,15 +222,20 @@ public class CompraService
 		switch (regiao) {
 			case SUL:
 				multiplicadorRegiao = BigDecimal.valueOf(1.05);
+				break; 
 			case NORDESTE:
 				multiplicadorRegiao = BigDecimal.valueOf(1.10);
+				break; 
 			case CENTRO_OESTE:
 				multiplicadorRegiao = BigDecimal.valueOf(1.20);
+				break; 
 			case NORTE:
 				multiplicadorRegiao = BigDecimal.valueOf(1.30);
+				break; 
 			case SUDESTE:
 			default:
 				multiplicadorRegiao = BigDecimal.valueOf(1.00);
+				break; // Boa prática adicionar no default também
 		}
 
 		frete = frete.multiply(multiplicadorRegiao);
