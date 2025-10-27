@@ -142,4 +142,21 @@ public class CompraServiceTest {
 				.isEqualByComparingTo("857.60");
 	}
 
+	@Test
+	@DisplayName("TD-09: Desconto por Tipo com Carrinho Misto")
+	public void calcularCustoTotal_descontoTipoCarrinhoMisto_cobreIfInterno() {
+		Produto roupa = criarProduto("Camisa", new BigDecimal("50.00"), BigDecimal.ONE, TipoProduto.ROUPA, false);
+		Produto livro = criarProduto("Livro", new BigDecimal("20.00"), BigDecimal.ONE, TipoProduto.LIVRO, false);
+		adicionarItem(roupa, 3L); // Ativa 5% desconto em Roupas
+		adicionarItem(livro, 1L);
+
+		String esperado = "162.50";
+
+		BigDecimal custoTotal = service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
+
+		assertThat(custoTotal)
+				.as("Desconto de tipo (5%%) deve ser aplicado apenas sobre os itens de ROUPA")
+				.isEqualByComparingTo(esperado);
+	}
+
 }
