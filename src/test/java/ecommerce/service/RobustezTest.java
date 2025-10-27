@@ -86,4 +86,56 @@ public class RobustezTest {
                 })
                 .withMessage("Preço do produto deve ser maior que zero.");
     }
+
+    @Test
+    @DisplayName("RB-05: Lança exceção se lista de itens do carrinho for nula")
+    public void calcularCustoTotal_listaItensNula_lancaIllegalArgumentException() {
+
+        carrinho.setItens(null);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
+                })
+                .withMessage("Carrinho vazio ou não encontrado.");
+    }
+
+    @Test
+    @DisplayName("RB-06: Lança exceção se TipoCliente for nulo")
+    public void calcularCustoTotal_tipoClienteNulo_lancaIllegalArgumentException() {
+        adicionarItem(criarProduto("p1", new BigDecimal("10.00"), BigDecimal.ONE, TipoProduto.LIVRO, false), 1L);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    service.calcularCustoTotal(carrinho, Regiao.SUDESTE, null);
+                })
+                .withMessage("Região ou cliente não identificados.");
+    }
+
+    @Test
+    @DisplayName("RB-07: Lança exceção se Quantidade do item for null")
+    public void calcularCustoTotal_itemQuantidadeNull_lancaIllegalArgumentException() {
+        Produto p = criarProduto("p1", new BigDecimal("100.00"), BigDecimal.ONE, TipoProduto.ROUPA, false);
+        ItemCompra itemComQtdNull = new ItemCompra(null, p, null); // Força quantidade null
+        carrinho.getItens().add(itemComQtdNull);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
+                })
+                .withMessage("Quantidade do item deve ser maior que zero.");
+    }
+
+    @Test
+    @DisplayName("RB-08: Lança exceção se Preço do produto for null")
+    public void calcularCustoTotal_itemPrecoNull_lancaIllegalArgumentException() {
+        Produto pComPrecoNull = criarProduto("p1", null, BigDecimal.ONE, TipoProduto.ROUPA, false);
+        adicionarItem(pComPrecoNull, 1L);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    service.calcularCustoTotal(carrinho, Regiao.SUDESTE, TipoCliente.BRONZE);
+                })
+                .withMessage("Preço do produto deve ser maior que zero.");
+    }
 }
