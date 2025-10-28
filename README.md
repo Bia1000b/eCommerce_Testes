@@ -167,7 +167,7 @@ A Complexidade Ciclomática (V(G)) calculada para a funcionalidade de calcularCu
 No nosso projeto, nos temos 51 testes totais, o que ultrapassa o mínimo e garante cobertura de todas as arestas.
 
 #### c) Cobertura MC/DC (Modified Condition/Decision Coverage)
-[cite_start]O critério MC/DC foi aplicado na decisão composta mais complexa da lógica de negócio para garantir que cada condição individual afeta independentemente o resultado da decisão. [cite: 1111, 1118]
+O critério MC/DC foi aplicado na decisão composta mais complexa da lógica de negócio para garantir que cada condição individual afeta independentemente o resultado da decisão.
 
 **Decisão Analisada (do método `calcularSubtotal`):**
 ```java
