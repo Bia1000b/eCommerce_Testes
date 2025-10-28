@@ -64,6 +64,6 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 
 ### Cobertura
 
-![tabelaRobustez](./assets/jacoco.png)
+![tabelaCobertura](./assets/jacoco.png)
 
 ---
