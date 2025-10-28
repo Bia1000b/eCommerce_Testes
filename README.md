@@ -66,7 +66,35 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 
 ![tabelaCobertura](./assets/jacoco.png)
 
-### Grafos
+### Grafo de Fluxo de Controle (CFG)
+
+calcularCustoTotal:
+
+![grafoCustoTotal](./assets/grafosTestes(6).png)
+
+calcularSubtotal:
+
+![grafoSubtotal](./assets/grafosTestes(5).png)
+
+aplicarDescontoPorTipo:
+
+![grafoDescontoPorTipo](./assets/grafosTestes.png)
+
+aplicarDescontoPorValor:
+
+![grafoDescontoPorValor](./assets/grafosTestes(4).png)
+
+calcularFreteBase:
+
+![grafoFreteBase](./assets/grafosTestes(1).png)
+
+aplicarDescontoClienteNoFrete:
+
+![grafoDescontoClienteNoFrete](./assets/grafosTestes(3).png)
+
+calcularPesoTributavelTotal:
+
+![grafoPesoTributavelTotal](./assets/grafosTestes(2).png)
 
 ### Cálculo da Complexidade Ciclomática
 
