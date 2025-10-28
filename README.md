@@ -166,4 +166,25 @@ A Complexidade Ciclomática (V(G)) calculada para a funcionalidade de calcularCu
 
 No nosso projeto, nos temos 51 testes totais, o que ultrapassa o mínimo e garante cobertura de todas as arestas.
 
+#### c) Cobertura MC/DC (Modified Condition/Decision Coverage)
+[cite_start]O critério MC/DC foi aplicado na decisão composta mais complexa da lógica de negócio para garantir que cada condição individual afeta independentemente o resultado da decisão. [cite: 1111, 1118]
+
+**Decisão Analisada (do método `calcularSubtotal`):**
+```java
+if (item.getProduto().getPreco() == null || item.getProduto().getPreco().compareTo(BigDecimal.ZERO) < 0)
+```
+
+* **Condição A:** `item.getProduto().getPreco() == null`
+* **Condição B:** `item.getProduto().getPreco().compareTo(BigDecimal.ZERO) < 0`
+
+**Tabela MC/DC:**
+
+| ID do Caso de Teste | Condição A (`preco == null`) | Condição B (`preco < 0`) | Resultado da Decisão (Lança Exceção?) | Independência Demonstrada |
+| :--- | :---: | :---: | :---: | :--- |
+| **RB-08** | **Verdadeiro** | - (`don't care`) | **Verdadeiro** | **Par com (3)** para testar a independência de **A** |
+| **RB-04** | Falso | **Verdadeiro** | **Verdadeiro** | **Par com (3)** para testar a independência de **B** |
+| **PE-01 (ou qualquer teste válido)** | Falso | **Falso** | **Falso** | Par de referência (resultado Falso) |
+
+Esta análise confirma que os testes de robustez (`RB-04` e `RB-08`) satisfazem o critério MC/DC para a validação de preço do produto.
+
 ---
