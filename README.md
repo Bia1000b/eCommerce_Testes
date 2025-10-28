@@ -62,4 +62,8 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 
 ## 4. Documentação e Projeto dos Casos de Teste de Caixa Branca
 
+### Cobertura
+
+![tabelaRobustez](./assets/jacoco.png)
+
 ---
