@@ -62,4 +62,108 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 
 ## 4. Documentação e Projeto dos Casos de Teste de Caixa Branca
 
+### Cobertura
+
+![tabelaCobertura](./assets/jacoco.png)
+
+### Grafo de Fluxo de Controle (CFG)
+
+calcularCustoTotal:
+
+![grafoCustoTotal](./assets/grafosTestes(6).png)
+
+calcularSubtotal:
+
+![grafoSubtotal](./assets/grafosTestes(5).png)
+
+aplicarDescontoPorTipo:
+
+![grafoDescontoPorTipo](./assets/grafosTestes.png)
+
+aplicarDescontoPorValor:
+
+![grafoDescontoPorValor](./assets/grafosTestes(4).png)
+
+calcularFreteBase:
+
+![grafoFreteBase](./assets/grafosTestes(1).png)
+
+aplicarDescontoClienteNoFrete:
+
+![grafoDescontoClienteNoFrete](./assets/grafosTestes(3).png)
+
+calcularPesoTributavelTotal:
+
+![grafoPesoTributavelTotal](./assets/grafosTestes(2).png)
+
+### Cálculo da Complexidade Ciclomática
+
+Calculemos, inicialmente, método por método:
+
+ calcularCustoTotal:
+
+     if (carrinho == null || ...): 1
+     if (regiao == null || ...): 1
+
+     Subtotal: 2 decisões
+
+ calcularSubtotal:
+
+     for (ItemCompra item : ...): 1
+     if (item.getQuantidade() == null || ...): 1
+     if (item.getProduto().getPreco() == null || ...): 1
+     
+     Subtotal: 3 decisões
+
+ aplicarDescontoPorTipo:
+
+     for (Map.Entry ...): 1
+     if (quantidade >= 8): 1
+     else if (quantidade >= 5): 1
+     else if (quantidade >= 3): 1
+     if (descontoPercentual.compareTo(...) > 0): 1
+     for (ItemCompra item : ...): 1
+     if (item.getProduto().getTipo() == tipo): 1
+
+     Subtotal: 7 decisões
+
+ aplicarDescontoPorValor:
+
+     if (subtotal.compareTo(...) > 0): 1
+     else if (subtotal.compareTo(...) >= 0): 1 (Você corrigiu o bug, mas a contagem continua a mesma)
+     if (descontoPercentual.compareTo(...) > 0): 1
+     
+     Subtotal: 3 decisões
+
+ calcularFreteBase:
+
+     if (pesoTotal.compareTo(...) <= 0): 1
+     else if (pesoTotal.compareTo(...) <= 0): 1
+     else if (pesoTotal.compareTo(...) <= 0): 1
+     if (!isento): 1
+     for (ItemCompra item : ...): 1
+     if (item.getProduto().isFragil()): 1
+     switch (regiao): 5 (case SUL, NORDESTE, CENTRO_OESTE, NORTE, SUDESTE)
+
+     Subtotal: 11 decisões
+
+ aplicarDescontoClienteNoFrete:
+
+     switch (tipoCliente): 3 (case OURO, PRATA, BRONZE)
+     Subtotal: 3 decisões
+
+ calcularPesoTributavelTotal:
+
+     for (ItemCompra item : ...): 1
+     Subtotal: 1 decisão
+
+Cálculo Final:
+
+      Total de Pontos de Decisão = 2 + 3 + 7 + 3 + 11 + 3 + 1 = 31
+      Complexidade Ciclomática (V(G)) = (Total de Decisões) + 1 = 31 + 1 = 32
+
+A Complexidade Ciclomática (V(G)) calculada para a funcionalidade de calcularCustoTotal, considerando todos os seus métodos auxiliares, é 32. Isso indica que são necessários, no mínimo, 32 casos de teste independentes para garantir a cobertura de todas as arestas do código.
+
+No nosso projeto, nos temos 51 testes totais, o que ultrapassa o mínimo e garante cobertura de todas as arestas.
+
 ---
