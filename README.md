@@ -8,15 +8,46 @@ Este projeto implementa e testa a funcionalidade de cálculo de custo total de u
 
 ---
 
-## 1. Como Executar os Testes
+## 1. Como Executar a Aplicação
 
-### Pré-requisitos
-* Java JDK 17 (ou superior)
-* Maven 3.8 (ou superior)
+1.  Certifique-se de ter o Java (versão 17 ou superior) e o Maven instalados e configurados.
+2.  Abra um terminal ou prompt de comando.
+3.  Navegue até a pasta raiz do projeto.
+4.  Execute o seguinte comando:
 
-//TODO
+    ```bash
+    mvn spring-boot:run
+    ```
 
-## 3. Documentação e Projeto dos Casos de Teste de Caixa Preta
+## 2. Como Executar os Testes
+
+1.  Abra um terminal ou prompt de comando.
+2.  Navegue até a pasta raiz do projeto.
+3.  Execute o seguinte comando Maven:
+
+    ```bash
+    mvn test
+    ```
+4.  O Maven compilará o código, executará os testes, e exibirá um resumo dos resultados no console, informando `[INFO] BUILD SUCCESS` se todos os testes passarem.
+
+## 3. Como Gerar e Verificar a Cobertura dos Testes
+
+1.  Abra um terminal ou prompt de comando.
+2.  Navegue até a pasta raiz do projeto.
+3.  Execute o seguinte comando Maven:
+
+    ```bash
+    mvn verify
+    ```
+
+4.  Após a execução bem-sucedida (`[INFO] BUILD SUCCESS`), o relatório HTML do JaCoCo estará disponível na seguinte pasta dentro do projeto:
+    `target/site/jacoco/`
+
+5.  Abra o arquivo `index.html` dessa pasta em um navegador web.
+
+6.  No relatório, navegue pelos pacotes (`ecommerce.service`) até encontrar a classe `CompraService`. Clique nela para ver o detalhamento da cobertura linha por linha e a cobertura de branches (arestas), indicada pelos losangos coloridos. Verifique se os métodos relevantes alcançaram 100% de cobertura de branches (losangos verdes).
+
+## 4. Documentação e Projeto dos Casos de Teste de Caixa Preta
 
 1) Identificação das Partições e Valores limites:
 
